@@ -1,76 +1,78 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f8ff;
-  background-image: url('background.jpg'); /* Ganti dengan URL gambar latar belakang Anda */
-  background-size: cover;
-  background-position: center;
-  color: #333;
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    background-image: url('background.jpg'); /* Ganti dengan URL gambar latar belakang Anda */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #333;
+    min-height: 100vh;
 }
 
 .container {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8); /* Tambahkan transparansi */
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Tambahkan transparansi */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-  text-align: center;
-  color: #4682b4;
+    text-align: center;
+    color: #4682b4;
 }
 
 form {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 label {
-  margin-bottom: 5px;
-  color: #4682b4;
+    margin-bottom: 5px;
+    color: #4682b4;
 }
 
 input, textarea, select {
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 button {
-  padding: 10px;
-  background-color: #4682b4;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+    padding: 10px;
+    background-color: #4682b4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 button:hover {
-  background-color: #5a9bd4;
+    background-color: #5a9bd4;
 }
 
 #commentSection {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .comment {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
 }
 
 .comment strong {
-  color: #4682b4;
+    color: #4682b4;
 }
 
 .comment .attendance {
-  font-style: italic;
-  color: #777;
+    font-style: italic;
+    color: #777;
 }
 
 .comment .timestamp {
-  font-size: 0.9em;
-  color: #888;
+    font-size: 0.9em;
+    color: #888;
 }
