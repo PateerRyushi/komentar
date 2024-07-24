@@ -1,6 +1,9 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #f0f8ff;
+  background-image: url('background.jpg'); /* Ganti dengan URL gambar latar belakang Anda */
+  background-size: cover;
+  background-position: center;
   color: #333;
 }
 
@@ -8,7 +11,7 @@ body {
   max-width: 600px;
   margin: 50px auto;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.8); /* Tambahkan transparansi */
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -28,7 +31,7 @@ label {
   color: #4682b4;
 }
 
-input, textarea {
+input, textarea, select {
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -60,4 +63,14 @@ button:hover {
 
 .comment strong {
   color: #4682b4;
+}
+
+.comment .attendance {
+  font-style: italic;
+  color: #777;
+}
+
+.comment .timestamp {
+  font-size: 0.9em;
+  color: #888;
 }
