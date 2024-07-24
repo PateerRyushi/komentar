@@ -1,51 +1,49 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const commentForm = document.getElementById('commentForm');
-    const commentsContainer = document.getElementById('comments');
+document.addEventListener('DOMContentLoaded', function () {
+  // Firebase configuration (ganti dengan konfigurasi Firebase Anda)
+  const firebaseConfig = {
+    apiKey: "AIzaSyCs05DhIJt_aGRB9RPCXM22d080s5arj6Y",
+    authDomain: "database-7d04e.firebaseapp.com",
+    databaseURL: "https://database-7d04e-default-rtdb.firebaseio.com",
+    projectId: "database-7d04e",
+    storageBucket: "database-7d04e.appspot.com",
+    messagingSenderId: "979988352807",
+    appId: "1:979988352807:web:6675899e0b7af524b1e302",
+    measurementId: "G-BD48HPMRG7"
+  };
   
-    commentForm.addEventListener('submit', function(event) {
-      event.preventDefault();
-      
-      // Mengambil nilai dari form
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  const commentForm = document.getElementById('commentForm');
+  const commentSection = document.getElementById('commentSection');
+
+  // Fungsi untuk menambah komentar ke Firestore
+  commentForm.addEventListener('submit', function (e) {
+      e.preventDefault();
       const name = document.getElementById('name').value;
       const comment = document.getElementById('comment').value;
-      const attendance = document.getElementById('attendance').value;
-  
-      // Membuat elemen untuk menampilkan komentar
-      const commentElement = document.createElement('div');
-      commentElement.classList.add('comment');
-      commentElement.innerHTML = `
-        <strong>${name}</strong> - ${attendance}<br>
-        ${comment}
-      `;
-  
-      // Menambahkan komentar ke dalam container komentar
-      commentsContainer.prepend(commentElement);
-  
-      // Reset form setelah mengirim komentar
-      commentForm.reset();
-  
-      // Menampilkan gambar setelah mengirim komentar
-      showImage();
-  
-      // Hapus gambar setelah beberapa detik
-      setTimeout(function() {
-        const image = document.querySelector('.comment-image');
-        if (image) {
-          image.remove();
-        }
-      }, 5000); // Hapus gambar setelah 5 detik (5000 milidetik)
-    });
-  
-    // Fungsi untuk menampilkan gambar
-    function showImage() {
-      const imageContainer = document.createElement('div');
-      imageContainer.classList.add('image-container');
-      const image = document.createElement('img');
-      image.src = 'image.jpg'; // Ganti dengan path gambar yang sesuai
-      image.alt = 'Wedding Image'; // Deskripsi alternatif untuk gambar
-      image.classList.add('comment-image');
-      imageContainer.appendChild(image);
-      commentsContainer.appendChild(imageContainer);
-    }
+
+      db.collection('comments').add({
+          name: name,
+          comment: comment,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      }).then(() => {
+          commentForm.reset();
+      }).catch((error) => {
+          console.error("Error adding document: ", error);
+      });
   });
-  
+
+  // Fungsi untuk menampilkan komentar yang tersimpan di Firestore
+  db.collection('comments').orderBy('timestamp', 'desc').onSnapshot((snapshot) => {
+      commentSection.innerHTML = '';
+      snapshot.forEach((doc) => {
+          const commentData = doc.data();
+          const commentElement = document.createElement('div');
+          commentElement.className = 'comment';
+          commentElement.innerHTML = `<strong>${commentData.name}</strong>: <p>${commentData.comment}</p>`;
+          commentSection.appendChild(commentElement);
+      });
+  });
+});
